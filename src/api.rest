@@ -1,0 +1,39 @@
+/*ALUMNO*/
+### Consulta todos los usuarios
+GET http://localhost:3000/alumno
+
+### Consulta un usuario
+GET http://localhost:3000/alumno/1222100888
+
+### Agregar un usuario
+POST http://localhost:3000/alumno
+Content-Type: application/json
+{
+    "idAlumno": "1222100888",
+    "nombreAlu": "Elizabeth",
+    "apPaternoAlu": "Gutierrez",
+    "apMaternoAlu": "Olvera",
+    "telefono": "4681004337",
+    "correo": "elizabeth7080@gmail.com",
+    "password": "123456",
+    "idCarrera": "TSU_DSM"
+}
+
+### Actualizar un usuario
+PUT http://localhost:3000/alumno/1222100888
+Content-Type: application/json
+
+{
+    "nombreAlu": "Elizabeth",
+    "apPaternoAlu": "Gutierrez",
+    "apMaternoAlu": "Olvera",
+    "telefono": "4681004337",
+    "correo": "eli7080@gmail.com",
+    "password": "123456",
+    "idCarrera": "TSU_DSM"
+}
+
+### Eliminar un usuario
+DELETE http://localhost:3000/alumno/1222100888
+Content-Type: application/json
+
