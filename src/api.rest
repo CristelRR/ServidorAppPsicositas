@@ -1,11 +1,32 @@
+/*CITA*/
+### Consultar todas las CITAS
+GET http://localhost:3000/cita
+
+### Consultar una CITA
+GET http://localhost:3000/cita/1
+
+### Agregar una CITA
+POST http://localhost:3000/cita
+Content-Type: application/json
+{
+    "idCita": ,
+    "motivo": "",
+    "status": "",
+    "idAlumno": "",
+    "idPsicologo": "",
+    "idNivel": "",
+    "idModalidad": ""
+  }
+
+
 /*ALUMNO*/
-### Consulta todos los usuarios
+### Consulta todos los alumnos
 GET http://localhost:3000/alumno
 
-### Consulta un usuario
-GET http://localhost:3000/alumno/1222100888
+### Consulta un alumno
+GET http://localhost:3000/alumno/1222100006
 
-### Agregar un usuario
+### Agregar un alumno 
 POST http://localhost:3000/alumno
 Content-Type: application/json
 {
@@ -19,7 +40,7 @@ Content-Type: application/json
     "idCarrera": "TSU_DSM"
 }
 
-### Actualizar un usuario
+### Actualizar un alumno
 PUT http://localhost:3000/alumno/1222100888
 Content-Type: application/json
 
@@ -33,7 +54,55 @@ Content-Type: application/json
     "idCarrera": "TSU_DSM"
 }
 
-### Eliminar un usuario
+### Eliminar un alumno
 DELETE http://localhost:3000/alumno/1222100888
 Content-Type: application/json
 
+
+
+/*DETALLE*/
+### Consulta todos los detalles
+GET http://localhost:3000/detalle
+
+### Consultar un detalle
+GET http://localhost:3000/detalle/C1-PSI1000001-1
+
+
+/*CARRERA*/
+### Consultar todas las carreras
+GET http://localhost:3000/carrera
+
+### Consultar una carrera
+GET http://localhost:3000/carrera/ING_DGS
+
+
+/*CONSULTORIO*/
+### Consultar todos los CONSULTORIOS
+GET http://localhost:3000/consultorio
+
+### Consultar un CONSULTORIO
+GET http://localhost:3000/consultorio/
+
+
+/*MODALIDAD*/
+### Consultar todos los MODALIDADES
+GET http://localhost:3000/modalidad
+
+### Consultar un MODALIDA
+GET http://localhost:3000/modalidad/M2
+
+
+/*NIVEL*/
+### Consultar todos los NIVELES
+GET http://localhost:3000/nivel
+
+### Consultar un NIVEL
+GET http://localhost:3000/nivel/N5
+
+
+/*PSICOLOGO*/
+### Consultar todos los PSICOLOGOS
+GET http://localhost:3000/psicologo
+
+### Consultar un PSICOLOGO
+GET http://localhost:3000/psicologo/PSI1000003

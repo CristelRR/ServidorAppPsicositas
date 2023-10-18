@@ -24,7 +24,7 @@ class PsicologoController {
     getByIdPsicologo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const idPsicologo = req.params.idPsicologo;
-            const resul = yield database_1.default.query('SELECT idPsicologo, nombrePsi, apPaternoPsi, apMaternoPsi, correo, password WHERE idPsicologo=?', [idPsicologo]);
+            const resul = yield database_1.default.query('SELECT idPsicologo, nombrePsi, apPaternoPsi, apMaternoPsi, correo, password FROM tb_psicologo WHERE idPsicologo=?', [idPsicologo]);
             res.json(resul[0]);
         });
     }

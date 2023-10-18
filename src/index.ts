@@ -8,6 +8,8 @@ import consultorioRoutes from './routes/consultorio-routes';
 import modalidadRoutes from './routes/modalidad-routes';
 import nivelRoutes from './routes/nivel-routes';
 import psicologoRoutes from './routes/psicologo-routes';
+import detalleRoutes from './routes/detalle-routes';
+import consultarCitaRoutes from './routes/consultarCita-routes';
 
 	class Server{
 		public app: Application;
@@ -25,7 +27,7 @@ import psicologoRoutes from './routes/psicologo-routes';
                 this.app.use(express.urlencoded({extended:false})); //ACEPTA FORMULARIOS HTML
 			}
 
-			routes():void{
+			routes():void{ //GRUPO DE RUTAS
                 this.app.use('/alumno', alumnoRoutes);
                 this.app.use('/carrera', carreraRoutes);
                 this.app.use('/cita', citaRoutes);
@@ -33,6 +35,8 @@ import psicologoRoutes from './routes/psicologo-routes';
                 this.app.use('/modalidad', modalidadRoutes);
                 this.app.use('/nivel', nivelRoutes);
                 this.app.use('/psicologo', psicologoRoutes);
+				this.app.use('/detalle', detalleRoutes);
+				this.app.use('/consultar', consultarCitaRoutes);
 			}
 			
 

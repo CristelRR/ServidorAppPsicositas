@@ -3,30 +3,30 @@ import pool from "../database";
 
 class NivelController{
     async getNivel(req:Request, res:Response){
-        const resul = await pool.query('SELECT idNivel, nomNivel, descripcionNivel FROM tb_nivel');
+        const resul = await pool.query('SELECT idNivel, nomNivel, descripcionNivel FROM tb_nivel_urgencia');
         res.json(resul[0]);
     }
 
     async getByIdNivel(req:Request, res:Response){
         const idNivel = req.params.idNivel;
-        const resul = await pool.query('SELECT idNivel, nomNivel, descripcionNivel FROM tb_nivel WHERE idNivel=?', [idNivel]);
+        const resul = await pool.query('SELECT idNivel, nomNivel, descripcionNivel FROM tb_nivel_urgencia WHERE idNivel=?', [idNivel]);
         res.json(resul[0]);
     }
 
     async createNivel(req:Request, res:Response){
-        await pool.query('INSERT INTO tb_nivel SET ?', [req.body]);
+        await pool.query('INSERT INTO tb_nivel_urgencia SET ?', [req.body]);
         res.json({message:'Registro guardado'})
     }
 
     async deleteNivel(req:Request, res: Response){
         const idNivel = req.params.idNivel;
-        await pool.query('DELETE FROM tb_nivel WHERE idNivel=?', [idNivel]);
+        await pool.query('DELETE FROM tb_nivel_urgencia WHERE idNivel=?', [idNivel]);
         res.json({message:'Registro Eliminado'})
     }
 
     async updateNivel(req:Request, res:Response){
         const{idNivel} = req.params;
-        await pool.query('UPDATE tb_nivel SET ? WHERE idNivel = ?', [req.body, idNivel]);
+        await pool.query('UPDATE tb_nivel_urgencia SET ? WHERE idNivel = ?', [req.body, idNivel]);
         res.json({message:'Registro Actualizado'})
     }
 }

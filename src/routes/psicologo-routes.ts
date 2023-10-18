@@ -8,7 +8,7 @@ class PsicologoRoutes{
         this.config();
     }
 
-    config(){
+    config(){ 
         this.router.get('/', psicologoController.getPsicologo);
         this.router.get('/:idPsicologo', psicologoController.getByIdPsicologo);
         this.router.post('/', psicologoController.createPsicologo);
@@ -18,4 +18,4 @@ class PsicologoRoutes{
 }
 
 const psicologoRoutes = new PsicologoRoutes();
-    export default psicologoRoutes.router;
+export default psicologoRoutes.router;

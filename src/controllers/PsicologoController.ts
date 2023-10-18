@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import pool from "../database";
 
 class PsicologoController{
+
     async getPsicologo(req:Request, res:Response){
         const resul = await pool.query('SELECT idPsicologo, nombrePsi, apPaternoPsi, apMaternoPsi, correo, password FROM tb_psicologo');
         res.json(resul[0]);
@@ -9,7 +10,7 @@ class PsicologoController{
 
     async getByIdPsicologo(req:Request, res:Response){
         const idPsicologo = req.params.idPsicologo;
-        const resul = await pool.query('SELECT idPsicologo, nombrePsi, apPaternoPsi, apMaternoPsi, correo, password WHERE idPsicologo=?', [idPsicologo]);
+        const resul = await pool.query('SELECT idPsicologo, nombrePsi, apPaternoPsi, apMaternoPsi, correo, password FROM tb_psicologo WHERE idPsicologo=?', [idPsicologo]);
         res.json(resul[0]);
     }
 
