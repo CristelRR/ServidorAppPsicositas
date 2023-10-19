@@ -23,9 +23,9 @@ class DetalleController {
     }
     getByIdDetalle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const PRIMARY = req.params.idDetalle;
-            const resul = yield database_1.default.query('SELECT horario, fecha, status, idConsultorio, idPsicologo, idCita FROM tb_detalle_consultorio WHERE PRIMARY=?', [PRIMARY]);
-            res.json(resul[0]);
+            const { idConsultorio, idPsicologo, idCita } = req.params;
+            const result = yield database_1.default.query('SELECT horario, fecha, status, idConsultorio, idPsicologo, idCita FROM tb_detalle_consultorio WHERE idConsultorio = ? AND idPsicologo = ? AND idCita = ?', [idConsultorio, idPsicologo, idCita]);
+            res.json(result[0]);
         });
     }
     createDetalle(req, res) {

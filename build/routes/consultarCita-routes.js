@@ -8,7 +8,7 @@ class ConsultarCitaRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', ConsultarCitaController_1.consultarCitaController.getByInfoCita);
+        this.router.get('/:idAlumno', ConsultarCitaController_1.consultarCitaController.getByInfoCita);
     }
 }
 const consultarCitaRoutes = new ConsultarCitaRoutes();

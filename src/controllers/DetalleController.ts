@@ -7,10 +7,10 @@ class DetalleController{
         res.json(resul[0]);
     }
 
-    async getByIdDetalle(req:Request, res:Response){
-        const PRIMARY = req.params.idDetalle;
-        const resul = await pool.query('SELECT horario, fecha, status, idConsultorio, idPsicologo, idCita FROM tb_detalle_consultorio WHERE PRIMARY=?', [PRIMARY]);
-        res.json(resul[0]);
+    async getByIdDetalle(req:Request, res:Response) {
+        const { idConsultorio, idPsicologo, idCita } = req.params;
+        const result = await pool.query('SELECT horario, fecha, status, idConsultorio, idPsicologo, idCita FROM tb_detalle_consultorio WHERE idConsultorio = ? AND idPsicologo = ? AND idCita = ?', [idConsultorio, idPsicologo, idCita]);
+        res.json(result[0]);
     }
 
     async createDetalle(req:Request, res:Response){

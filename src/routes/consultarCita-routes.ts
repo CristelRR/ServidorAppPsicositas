@@ -9,7 +9,7 @@ class ConsultarCitaRoutes{
     }
 
     config(){
-        this.router.get('/', consultarCitaController.getByInfoCita);
+        this.router.get('/:idAlumno', consultarCitaController.getByInfoCita);
     }
 }
 

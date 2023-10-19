@@ -65,7 +65,7 @@ Content-Type: application/json
 GET http://localhost:3000/detalle
 
 ### Consultar un detalle
-GET http://localhost:3000/detalle/C1-PSI1000001-1
+GET http://localhost:3000/detalle/C2/PSI1000001/3
 
 
 /*CARRERA*/
@@ -106,3 +106,6 @@ GET http://localhost:3000/psicologo
 
 ### Consultar un PSICOLOGO
 GET http://localhost:3000/psicologo/PSI1000003
+
+### Consultar un PSICOLOGO
+GET http://localhost:3000/consultar/1222100464

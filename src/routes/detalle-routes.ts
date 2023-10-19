@@ -10,10 +10,10 @@ class DetalleRoutes{
 
     config(){
         this.router.get('/', detalleController.getDetalle);
-        this.router.get('/:PRIMARY', detalleController.getByIdDetalle);
+        this.router.get('/:idConsultorio/:idPsicologo/:idCita', detalleController.getByIdDetalle);
         this.router.post('/', detalleController.createDetalle);
-        this.router.delete('/:PRIMARY', detalleController.deleteDetalle);
-        this.router.put('/:PRIMARY', detalleController.updateDetalle);
+        this.router.delete('/:idConsultorio/:idPsicologo/:idCita', detalleController.deleteDetalle);
+        this.router.put('/:idConsultorio/:idPsicologo/:idCita', detalleController.updateDetalle);
     }
 }
 
