@@ -10,6 +10,7 @@ import nivelRoutes from './routes/nivel-routes';
 import psicologoRoutes from './routes/psicologo-routes';
 import detalleRoutes from './routes/detalle-routes';
 import consultarCitaRoutes from './routes/consultarCita-routes';
+import loginRoutes from './routes/login-routes';
 
 	class Server{
 		public app: Application;
@@ -37,6 +38,7 @@ import consultarCitaRoutes from './routes/consultarCita-routes';
                 this.app.use('/psicologo', psicologoRoutes);
 				this.app.use('/detalle', detalleRoutes);
 				this.app.use('/consultar', consultarCitaRoutes);
+				this.app.use('login', loginRoutes);
 			}
 			
 

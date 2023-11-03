@@ -15,6 +15,7 @@ const nivel_routes_1 = __importDefault(require("./routes/nivel-routes"));
 const psicologo_routes_1 = __importDefault(require("./routes/psicologo-routes"));
 const detalle_routes_1 = __importDefault(require("./routes/detalle-routes"));
 const consultarCita_routes_1 = __importDefault(require("./routes/consultarCita-routes"));
+const login_routes_1 = __importDefault(require("./routes/login-routes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -38,6 +39,7 @@ class Server {
         this.app.use('/psicologo', psicologo_routes_1.default);
         this.app.use('/detalle', detalle_routes_1.default);
         this.app.use('/consultar', consultarCita_routes_1.default);
+        this.app.use('login', login_routes_1.default);
     }
     star() {
         this.app.listen(this.app.get('port'), () => {

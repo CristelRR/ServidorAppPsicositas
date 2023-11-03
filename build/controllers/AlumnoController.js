@@ -15,12 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createAlumno = exports.alumnoController = void 0;
 const database_1 = __importDefault(require("../database"));
 class AlumnoController {
+    //Seleccionar a todos los registros de la tabla
     getAlumno(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const resul = yield database_1.default.query('SELECT idAlumno, nombreAlu, apPaternoAlu, apMaternoAlu, telefono, correo, password, idCarrera FROM tb_alumno');
             res.json(resul[0]);
         });
     }
+    //Seleccionar a un registro en especial de la tabla "idAlumno"
     getByIdCarrera(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const idAlumno = req.params.idAlumno;
@@ -28,12 +30,14 @@ class AlumnoController {
             res.json(resul[0]);
         });
     }
+    //Insertar nuevo registro en la tabla
     createAlumno(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO tb_alumno SET ?', [req.body]);
             res.json({ message: 'Registro guardado' });
         });
     }
+    //Eliminar un registro de la tabla por el "idAlumno"
     deleteAlumno(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const idAlumno = req.params.idAlumno;
