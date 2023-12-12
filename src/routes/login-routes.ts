@@ -9,7 +9,11 @@ class LoginRoutes{
     }
 
     config(){
-        this.router.post("/", loginController.login);
+        this.router.get('/', loginController.getUsers);
+        this.router.get('/:id_usuario', loginController.getByIdUsr);
+        this.router.get('/:id_usuario/:password', loginController.getUsr);
+        this.router.post('/:id_usuario', loginController.getUser);
+        this.router.post('/:id_usuario/:password', loginController.getUsr);
     }
 }
 

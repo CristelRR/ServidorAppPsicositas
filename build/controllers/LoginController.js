@@ -15,40 +15,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginController = void 0;
 const database_1 = __importDefault(require("../database"));
 class LoginController {
-    login(req, res) {
+    getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const result = yield database_1.default.query('SELECT * FROM tb_usuario');
+            res.json(result[0]);
+        });
+    }
+    getByIdUsr(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_usuario } = req.params;
+            const result = yield database_1.default.query('SELECT * FROM tb_usuario WHERE id_usuario=?', [id_usuario]);
+            res.json(result[0]);
+        });
+    }
+    // async getUsr(req: Request, res: Response){
+    //     const {id_usuario}=req.params;
+    //     const {password}=req.params;
+    //     const result = await pool.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, password]);
+    //     res.json(result[0]);
+    // }
+    getUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_usuario } = req.params;
+            const result = yield database_1.default.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, req.body.password]);
+        });
+    }
+    getUsr(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id_usuario, password } = req.params;
             try {
-                const { usuario, password } = req.body;
-                console.log('Contraseña recibida', password);
-                const [alumnoRows] = yield database_1.default.query('SELECT * FROM tb_alumno WHERE idAlumno = ?', [usuario]);
-                const [psicologoRows] = yield database_1.default.query('SELECT * FROM tb_psicologo WHERE idPsicologo = ?', [usuario]);
-                let user = null;
-                if (alumnoRows.length > 0) {
-                    user = alumnoRows[0];
+                const result = yield database_1.default.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, password]);
+                if (result[0].length === 0) {
+                    res.status(404).json({ message: 'Usuario o contraseña incorrecto' });
                 }
-                else if (psicologoRows.length > 0) {
-                    user = psicologoRows[0];
-                }
-                if (!user) {
-                    return res.status(401).json({ message: "Credenciales incorrectas" });
-                }
-                // Verificar la contraseña (asegúrate de que se almacene de forma segura y utiliza bcrypt)
-                if (user.password !== password) {
-                    return res.status(401).json({ message: "Credenciales incorrectas" });
-                }
-                // Redirigir al home correspondiente
-                if (alumnoRows.length > 0) {
-                    res.json({ message: "Inicio de sesión exitoso como alumno", redirectTo: "agendar-cita" });
-                }
-                else if (psicologoRows.length > 0) {
-                    res.json({ message: "Inicio de sesión exitoso como psicólogo", redirectTo: "home-personal" });
+                else {
+                    res.json(result[0]);
                 }
             }
             catch (error) {
-                console.log(error);
-                res.status(500).json({ message: "Error interno del servidor" });
+                console.error('Error al iniciar sesión:', error);
+                res.status(500).json({ message: 'Error al procesar la solicitud' });
             }
         });
     }
 }
-exports.loginController = new LoginController();
+exports.loginController = new LoginController;
