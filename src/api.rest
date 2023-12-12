@@ -109,3 +109,12 @@ GET http://localhost:3000/psicologo/PSI1000003
 
 ### Consultar un PSICOLOGO
 GET http://localhost:3000/consultar/1222100464
+
+
+/*TIPO CITA*/
+### Consultar un tipo cita
+GET http://localhost:3000/tipo
+
+/*LOGIN*/
+### Consultar un tipo cita
+POST http://localhost:3000/login

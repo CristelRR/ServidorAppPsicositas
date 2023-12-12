@@ -11,6 +11,7 @@ import psicologoRoutes from './routes/psicologo-routes';
 import detalleRoutes from './routes/detalle-routes';
 import consultarCitaRoutes from './routes/consultarCita-routes';
 import loginRoutes from './routes/login-routes';
+import tipoCitaRoutes from './routes/tipoCita-routes';
 
 	class Server{
 		public app: Application;
@@ -38,7 +39,8 @@ import loginRoutes from './routes/login-routes';
                 this.app.use('/psicologo', psicologoRoutes);
 				this.app.use('/detalle', detalleRoutes);
 				this.app.use('/consultar', consultarCitaRoutes);
-				this.app.use('login', loginRoutes);
+				this.app.use('/login', loginRoutes);
+				this.app.use('/tipo', tipoCitaRoutes);
 			}
 			
 

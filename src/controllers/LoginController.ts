@@ -1,57 +1,52 @@
 import { Request, Response } from "express";
 import pool from "../database";
-import { RowDataPacket } from "mysql2";
+import { createPool } from "mysql2/promise";
 
-interface Usuario{
-    idUser: number;
-    usuario: string;
-    password: string;
-}
 
 class LoginController{
-    async login(req: Request, res: Response){
-        try{
-            const{ usuario, password } = req.body;
-            console.log('Contraseña recibida', password);
-
-            const [alumnoRows] = await pool.query<RowDataPacket[]>(
-                'SELECT * FROM tb_alumno WHERE idAlumno = ?',
-                [usuario]
-            );
-
-            const [psicologoRows] = await pool.query<RowDataPacket[]>(
-                'SELECT * FROM tb_psicologo WHERE idPsicologo = ?',
-                [usuario]
-            );
-
-            let user = null;
-
-            if(alumnoRows.length>0){
-                user=alumnoRows[0] as Usuario;
-            }else if(psicologoRows.length>0){
-                user=psicologoRows[0] as Usuario;
-            }
-
-            if(!user){
-                return res.status(401).json({ message:"Credenciales incorrectas"})
-            }
-
-            // Verificar la contraseña (asegúrate de que se almacene de forma segura y utiliza bcrypt)
-            if (user.password !== password) {
-                return res.status(401).json({ message: "Credenciales incorrectas" });
-            }
-
-            // Redirigir al home correspondiente
-            if (alumnoRows.length > 0) {
-                res.json({ message: "Inicio de sesión exitoso como alumno", redirectTo: "agendar-cita" });
-            } else if (psicologoRows.length > 0) {
-                res.json({ message: "Inicio de sesión exitoso como psicólogo", redirectTo: "home-personal" });
-            }
-        }catch(error){
-            console.log(error);
-            res.status(500).json({ message: "Error interno del servidor"});
-        }
+    async getUsers(req: Request, res: Response){
+        const result =  await pool.query('SELECT * FROM tb_usuario')
+        res.json(result[0]);
     }
+
+    async getByIdUsr(req:Request, res:Response){
+        const {id_usuario} = req.params;
+        const result = await pool.query('SELECT * FROM tb_usuario WHERE id_usuario=?', [id_usuario]);
+        res.json(result[0]);
+    }
+
+    // async getUsr(req: Request, res: Response){
+    //     const {id_usuario}=req.params;
+    //     const {password}=req.params;
+
+    //     const result = await pool.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, password]);
+    //     res.json(result[0]);
+    // }
+
+    async getUser(req: Request, res:Response){
+        const {id_usuario} = req.params;
+
+        const result = await pool.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, req.body. password])
+    }
+
+    async getUsr(req: Request, res: Response) {
+        const { id_usuario, password } = req.params;
+      
+        try {
+          const result = await pool.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, password]);
+      
+          if (result[0].length === 0) {
+            res.status(404).json({ message: 'Usuario o contraseña incorrecto' });
+          } else {
+            res.json(result[0]);
+          }
+        } catch (error) {
+          console.error('Error al iniciar sesión:', error);
+          res.status(500).json({ message: 'Error al procesar la solicitud' });
+        }
+      }
+      
+
 }
 
-export const loginController = new LoginController();
+export const loginController = new LoginController;
