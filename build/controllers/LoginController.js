@@ -17,14 +17,14 @@ const database_1 = __importDefault(require("../database"));
 class LoginController {
     getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('SELECT * FROM tb_usuario');
+            const result = yield database_1.default.query("SELECT * FROM tb_usuario");
             res.json(result[0]);
         });
     }
     getByIdUsr(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_usuario } = req.params;
-            const result = yield database_1.default.query('SELECT * FROM tb_usuario WHERE id_usuario=?', [id_usuario]);
+            const result = yield database_1.default.query("SELECT * FROM tb_usuario WHERE id_usuario=?", [id_usuario]);
             res.json(result[0]);
         });
     }
@@ -37,25 +37,31 @@ class LoginController {
     getUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_usuario } = req.params;
-            const result = yield database_1.default.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, req.body.password]);
+            const result = yield database_1.default.query("SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?", [id_usuario, req.body.password]);
         });
     }
     getUsr(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_usuario, password } = req.params;
             try {
-                const result = yield database_1.default.query('SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?', [id_usuario, password]);
+                const result = yield database_1.default.query("SELECT * FROM tb_usuario WHERE id_usuario=? AND password=?", [id_usuario, password]);
                 if (result[0].length === 0) {
-                    res.status(404).json({ message: 'Usuario o contraseña incorrecto' });
+                    res.status(404).json({ message: "Usuario o contraseña incorrecto" });
                 }
                 else {
                     res.json(result[0]);
                 }
             }
             catch (error) {
-                console.error('Error al iniciar sesión:', error);
-                res.status(500).json({ message: 'Error al procesar la solicitud' });
+                console.error("Error al iniciar sesión:", error);
+                res.status(500).json({ message: "Error al procesar la solicitud" });
             }
+        });
+    }
+    insertUsr(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('INSERT INTO tb_alumno SET ?', [req.body]);
+            res.json({ Message: 'Se ha actualizado' });
         });
     }
 }
