@@ -14,6 +14,7 @@ class LoginRoutes{
         this.router.get('/:id_usuario/:password', loginController.getUsr);
         this.router.post('/:id_usuario', loginController.getUser);
         this.router.post('/:id_usuario/:password', loginController.getUsr);
+        this.router.post('/', loginController.insertUsr);
     }
 }
 

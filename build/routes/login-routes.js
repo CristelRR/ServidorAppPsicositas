@@ -13,6 +13,7 @@ class LoginRoutes {
         this.router.get('/:id_usuario/:password', LoginController_1.loginController.getUsr);
         this.router.post('/:id_usuario', LoginController_1.loginController.getUser);
         this.router.post('/:id_usuario/:password', LoginController_1.loginController.getUsr);
+        this.router.post('/', LoginController_1.loginController.insertUsr);
     }
 }
 const loginRoutes = new LoginRoutes();
